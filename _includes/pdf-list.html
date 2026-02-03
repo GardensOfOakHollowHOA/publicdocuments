@@ -1,0 +1,47 @@
+{% assign folder = include.folder | append: "/" %}
+{% assign today = "now" | date: "%s" %}
+{% assign new_window_days = 60 %}
+{% assign new_window_seconds = new_window_days | times: 86400 %}
+
+{% assign files = site.static_files
+  | where: "extname", ".pdf"
+  | where_exp: "file", "file.path contains folder"
+  | sort: "name"
+  | reverse
+%}
+
+{% assign current_year = "" %}
+
+{% if files.size > 0 %}
+  {% for file in files %}
+    {% assign filename = file.name | remove: ".pdf" %}
+    {% assign year = filename | slice: 0, 4 %}
+    {% assign date_string = filename | slice: 0, 10 %}
+    {% assign file_date = date_string | date: "%s" %}
+    {% assign age_seconds = today | minus: file_date %}
+    {% assign is_new = age_seconds | minus: new_window_seconds %}
+
+    {% if year != current_year %}
+      {% if current_year != "" %}
+        </ul>
+      {% endif %}
+      <h3>{{ year }}</h3>
+      <ul class="pdf-list">
+      {% assign current_year = year %}
+    {% endif %}
+
+    <li>
+      📄
+      <a href="{{ site.baseurl }}{{ file.path }}">
+        Meeting Minutes – {{ date_string | date: "%B %-d, %Y" }}
+      </a>
+      {% if is_new < 0 %}
+        <span class="badge-new">NEW</span>
+      {% endif %}
+    </li>
+
+  {% endfor %}
+  </ul>
+{% else %}
+  <p><em>No meeting minutes are currently available.</em></p>
+{% endif %}

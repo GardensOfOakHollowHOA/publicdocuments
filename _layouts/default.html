@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>
+    {% if page.title %}
+      {{ page.title }} | {{ site.title }}
+    {% else %}
+      {{ site.title }}
+    {% endif %}
+  </title>
+
+  <meta name="description" content="{{ site.description }}" />
+
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">
+        <a href="{{ '/' | relative_url }}">
+          {{ site.title }}
+        </a>
+      </h1>
+
+      {% if site.subtitle %}
+        <p class="site-subtitle">{{ site.subtitle }}</p>
+      {% endif %}
+    </div>
+  </header>
+
+  <main class="site-content">
+    <div class="container">
+      {{ content }}
+    </div>
+  </main>
+
+  <footer class="site-footer">
+  <div class="container">
+
+    <p class="compliance-disclaimer">
+      This website is provided by {{ site.title }} for the purpose of making
+      certain recorded dedicatory instruments available to owners in accordance
+      with Texas Property Code § 207.006.
+    </p>
+
+    <p class="compliance-disclaimer">
+      Documents posted on this site are provided for convenience only and may not
+      reflect the most current amendments or filings. Official records are those
+      filed with the county clerk.
+    </p>
+
+    <p class="compliance-disclaimer">
+      If you believe a required document is missing or need assistance accessing
+      any material, please contact the Association.
+    </p>
+
+    <p class="copyright">
+      © {{ "now" | date: "%Y" }} {{ site.title }}.
+    </p>
+
+  </div>
+</footer>
+
+
+</body>
+</html>
