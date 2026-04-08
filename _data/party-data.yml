@@ -1,18 +1,29 @@
-- category: Dishes
+- category: Food
   items: 
-    - Ribs
-    - Pigs in a blanket
+    - BBQ Ribs
+    - Jalapeno poppers
+    - Tamales
+    - Corn in a cup
+    - 7 layer dip and chips
 
 - category: Desserts
   items: 
-    - 
+    - Cookies
 
 - category: Drinks
   items: 
+    - Ice
     - Water
 
 - category: Supplies
   items: 
-    - Plates
+    - Chairs
+    - Coolers
+    - Cups
+    - Fiesta decorations
+    - Garbage cans
     - Napkins
+    - Plates
     - Tables
+    - Table covers
+    - Shade tent
