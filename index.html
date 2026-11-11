@@ -99,11 +99,27 @@ title: The Gardens of Oak Hollow Homeowners Association
   </ul>
 
 <h3>Amendments</h3>
-  <ul>
-    <li>
-      📄
-    </li>
+{% assign amendment_files = site.static_files | sort: "name" %}
+{% capture amendment_links %}
+  {% for file in amendment_files %}
+    {% assign folder = file.path | remove: file.name %}
+    {% assign extension = file.extname | downcase %}
+    {% if folder == "/amendments/" and extension == ".pdf" %}
+      {% assign amendment_title = file.basename | replace: "_", " " | replace: "-", " " %}
+      <li>
+        📄 <a href="{{ file.path | relative_url | escape }}">{{ amendment_title | escape }}</a>
+      </li>
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+{% assign amendment_links = amendment_links | strip %}
+{% if amendment_links != "" %}
+  <ul class="pdf-list">
+    {{ amendment_links }}
   </ul>
+{% else %}
+  <p><em>No amendments are currently available.</em></p>
+{% endif %}
 
 <hr />
 
